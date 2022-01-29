@@ -369,12 +369,6 @@ public class Main extends javax.swing.JFrame {
         widthSpinner.setModel(new SpinnerNumberModel(width, 1, image.length, 1));
     }
 
-    private void initPanelColor() {
-        Graphics2D g = (Graphics2D) CanvasPane.getGraphics();
-        CanvasPane.getBackground();
-        panelColor = g.getColor();
-    }
-
     private void rePaint() {
 
         int scaledHeight = height * scale;
@@ -415,57 +409,14 @@ public class Main extends javax.swing.JFrame {
             img2.setRGB(x, y, color.getRGB());
         }
 
-        //g.drawImage(img2, 0, 0 , Color.BLACK, null);
         g.drawImage(img2, 0, 0, width * scale, height * scale, null);
-        //g.drawImage(arg0, arg1, this)
     }
 
     private void writeHex(byte[] bin) {
-
-        int cols = 16;
-        StringBuilder sb = new StringBuilder();
-        StringBuilder byteString = new StringBuilder();
-        
-        for (int i = 0; i < bin.length; i++) {
-            if (i % cols == 0) {
-                sb.append(String.format("\n%08X", i) + ":");
-            }
-
-            if (i % 2 == 0) {
-                sb.append(" ");
-            }
-
-            int byteInt = bin[i] & 0xFF;
-            
-            sb.append(String.format("%02X", byteInt));
-            
-            if (byteInt < 32 || byteInt == 255 || (byteInt > 126 && byteInt < 161)) {
-                byteString.append(".");
-            } else {
-                byteString.append((char) byteInt);
-            }
-            
-            if (i % cols == cols - 1) {
-                
-                sb.append(" " + byteString.toString());
-                byteString = new StringBuilder();
-            } else if ( i == bin.length - 1){
-                int number = cols - (bin.length % cols);
-                number = number * 2 + number/2;
-                
-                for (int j = 0; j < number; j++){
-                    sb.append(" ");
-                }
-                sb.append(" " + byteString.toString());
-                // Not needed. That is the last iteration
-                //byteString = new StringBuilder();
-            }
-        }
         
         BinaryData bb = new BinaryData();
         bb.setBinaryData(bin);
 
-        //jEditorPane1.setText(sb.toString().substring(1, sb.length()));
         jEditorPane1.setText(bb.toString());
     }
     
