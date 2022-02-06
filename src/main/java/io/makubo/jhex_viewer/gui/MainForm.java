@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.makubo.jhex_viewer;
+package io.makubo.jhex_viewer.gui;
 
 import io.makubo.jhex_viewer.types.BinaryData;
 import java.awt.Color;
@@ -42,6 +42,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.Timer;
@@ -52,19 +53,19 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author maxon
  */
-public class Main extends javax.swing.JFrame {
+public class MainForm extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public MainForm() {
 //        try {
 //            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 //            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 //
 //            //UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 //        } catch (Exception ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         initComponents();
 
@@ -92,12 +93,7 @@ public class Main extends javax.swing.JFrame {
         });
         //timer.start();
 
-        try {
-            loadFile("demo.bin");
-
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
     }
 
@@ -110,34 +106,95 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        mainPanel = new javax.swing.JPanel();
-        toolsPanel = new javax.swing.JPanel();
+        jTable1 = new javax.swing.JTable();
+        StatusBar = new javax.swing.JPanel();
+        MainPanel = new javax.swing.JPanel();
+        jSplitPane5 = new javax.swing.JSplitPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        CanvasPane = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         offsetSpinner = new javax.swing.JSpinner();
         heightSpinner = new javax.swing.JSpinner();
         widthSpinner = new javax.swing.JSpinner();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        CanvasPane = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        OpenFileMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane3.setBorder(null);
+        StatusBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        javax.swing.GroupLayout StatusBarLayout = new javax.swing.GroupLayout(StatusBar);
+        StatusBar.setLayout(StatusBarLayout);
+        StatusBarLayout.setHorizontalGroup(
+            StatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        StatusBarLayout.setVerticalGroup(
+            StatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 54, Short.MAX_VALUE)
+        );
+
+        jSplitPane5.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jEditorPane1.setEditable(false);
+        jEditorPane1.setFont(new Font("Monospaced", Font.PLAIN, jEditorPane1.getFont().getSize()));
+        jScrollPane2.setViewportView(jEditorPane1);
+
+        jSplitPane5.setBottomComponent(jScrollPane2);
+
+        jScrollPane1.setViewportView(CanvasPane);
+
+        CanvasPane.setAutoscrolls(true);
+        CanvasPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CanvasPane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                CanvasPaneMouseMoved(evt);
             }
         });
+
+        javax.swing.GroupLayout CanvasPaneLayout = new javax.swing.GroupLayout(CanvasPane);
+        CanvasPane.setLayout(CanvasPaneLayout);
+        CanvasPaneLayout.setHorizontalGroup(
+            CanvasPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1163, Short.MAX_VALUE)
+        );
+        CanvasPaneLayout.setVerticalGroup(
+            CanvasPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 452, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(CanvasPane);
 
         offsetSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -163,14 +220,13 @@ public class Main extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                    .addComponent(offsetSpinner)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(offsetSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(widthSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(heightSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(heightSpinner)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,94 +237,55 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(widthSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(heightSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(CanvasPane);
-
-        CanvasPane.setAutoscrolls(true);
-        CanvasPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        javax.swing.GroupLayout CanvasPaneLayout = new javax.swing.GroupLayout(CanvasPane);
-        CanvasPane.setLayout(CanvasPaneLayout);
-        CanvasPaneLayout.setHorizontalGroup(
-            CanvasPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1405, Short.MAX_VALUE)
-        );
-        CanvasPaneLayout.setVerticalGroup(
-            CanvasPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 423, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(CanvasPane);
-
-        javax.swing.GroupLayout toolsPanelLayout = new javax.swing.GroupLayout(toolsPanel);
-        toolsPanel.setLayout(toolsPanelLayout);
-        toolsPanelLayout.setHorizontalGroup(
-            toolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(toolsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        toolsPanelLayout.setVerticalGroup(
-            toolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jEditorPane1.setEditable(false);
-        jEditorPane1.setFont(new Font("Monospaced", Font.PLAIN, jEditorPane1.getFont().getSize()));
-        jScrollPane2.setViewportView(jEditorPane1);
+        jSplitPane5.setLeftComponent(jPanel4);
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
+        MainPanel.setLayout(MainPanelLayout);
+        MainPanelLayout.setHorizontalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(toolsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jSplitPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE))
         );
-
-        jScrollPane3.setViewportView(mainPanel);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jTextField1.setText("jTextField1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        MainPanelLayout.setVerticalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                .addGap(997, 997, 997))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jSplitPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(null);
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu1.setText("File");
+
+        OpenFileMenuItem.setText("Open File");
+        OpenFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenFileMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(OpenFileMenuItem);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -280,24 +297,21 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
+            .addComponent(StatusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(StatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        rePaint();
-        writeHex(image);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void offsetSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_offsetSpinnerStateChanged
         offset = (int) ((JSpinner) evt.getSource()).getValue();
@@ -314,47 +328,37 @@ public class Main extends javax.swing.JFrame {
         rePaint();
     }//GEN-LAST:event_widthSpinnerStateChanged
 
+    private void OpenFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenFileMenuItemActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(this);
+        
+        File binFile = fc.getSelectedFile();
+        
+        try {
+            if (binFile != null) {
+                loadFile(binFile);
+                rePaint();
+                writeHex(image);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_OpenFileMenuItemActionPerformed
+
+    private void CanvasPaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CanvasPaneMouseMoved
+        // TODO add your handling code here:
+        rePaint();
+        paintAim(evt.getX(),evt.getY());
+    }//GEN-LAST:event_CanvasPaneMouseMoved
+
     public void timerActionPerformed(java.awt.event.ActionEvent evt) {
         rePaint();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-            }
-        });
-    }
-
-    private void loadFile(String path) throws IOException {
-        image = Files.readAllBytes(Paths.get(path));
+    private void loadFile(File file) throws IOException {
+        image = Files.readAllBytes(file.toPath());
 
         height = (int) Math.sqrt(image.length / 3);
         width = height;
@@ -367,6 +371,17 @@ public class Main extends javax.swing.JFrame {
         offsetSpinner.setModel(new SpinnerNumberModel(0, 0, image.length - 1, 1));
         heightSpinner.setModel(new SpinnerNumberModel(height, 1, image.length, 1));
         widthSpinner.setModel(new SpinnerNumberModel(width, 1, image.length, 1));
+    }
+    
+    private void paintAim(int x, int y){
+        
+        int centerX = x - x % scale + scale / 2;
+        int centerY = y - y % scale + scale / 2;
+        Graphics2D g = (Graphics2D) CanvasPane.getGraphics();
+        g.setColor(Color.GREEN);
+        g.drawLine(0, centerY, width*scale, centerY);
+        g.drawLine(centerX, 0, centerX, height*scale);
+        g.drawRect(x - x % scale, y - y % scale,scale,scale);
     }
 
     private void rePaint() {
@@ -426,21 +441,23 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CanvasPane;
+    private javax.swing.JPanel MainPanel;
+    private javax.swing.JMenuItem OpenFileMenuItem;
+    private javax.swing.JPanel StatusBar;
     private javax.swing.JSpinner heightSpinner;
-    private javax.swing.JButton jButton1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel mainPanel;
+    private javax.swing.JSplitPane jSplitPane5;
+    private javax.swing.JTable jTable1;
     private javax.swing.JSpinner offsetSpinner;
-    private javax.swing.JPanel toolsPanel;
     private javax.swing.JSpinner widthSpinner;
     // End of variables declaration//GEN-END:variables
 
@@ -450,5 +467,5 @@ public class Main extends javax.swing.JFrame {
     private int height = 0;
     private int width = 0;
     private Color panelColor;
-    private int scale = 4;
+    private int scale = 6;
 }
